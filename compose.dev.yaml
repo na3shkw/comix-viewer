@@ -1,0 +1,8 @@
+# For local development with hot-reloading for the Flask app
+services:
+  app:
+    command: flask --app wsgi --debug run --host=0.0.0.0
+    volumes:
+      - type: bind
+        source: ./app
+        target: /app/app

@@ -1,0 +1,13 @@
+[project]
+name = "comix-viewer"
+version = "0.1.0"
+description = "Comix Viewer is a web application for viewing comic books, with features for marking episodes as read or unread."
+readme = "README.md"
+requires-python = ">=3.13.5"
+dependencies = [
+    "flask-sqlalchemy>=3.1.1",
+    "flask[dotenv]>=3.1.1",
+    "gunicorn>=23.0.0",
+    "natsort>=8.4.0",
+    "sqlalchemy>=2.0.41",
+]

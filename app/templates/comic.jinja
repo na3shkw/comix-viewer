@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ current_comic_title }} | {{ app_name }}</title>
+    <link rel="stylesheet" href="/static/index_style.css">
+</head>
+
+<body>
+    <main>
+        <h1>{{ current_comic_title }}</h1>
+        <p>右クリックで既読状態を設定・解除します</p>
+        <ul class="episode-list">
+            {% for episode_no in episode_no_list %}
+            <li class="episode-list-item {{ 'episode-read' if episode_no in read_episode else '' }}"
+                data-episode-no="{{ episode_no }}">
+                <a href="/comic/{{ current_comic_title }}/episode/{{ episode_no }}">第{{ episode_no }}話</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <script src="/static/read_episode.js"></script>
+        <script src="/static/index_main.js"></script>
+        <script>
+            // ページロード時に既読エピソードを取得してUIに適用
+            document.addEventListener('DOMContentLoaded', fetchReadEpisodesAndApplyToUI);
+        </script>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episode {{ episode_no }} - {{ comic_title }} | {{ app_name }}</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/viewer_style.css">
+</head>
+
+<body>
+    <main>
+        <div class="swiper" dir="rtl">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </main>
+    <script>
+        const slides = [
+            '',
+            {% if episode_no > 1 %}
+                '<a href="/comic/{{ current_comic_title }}/episode/{{ episode_no - 1 }}" class="episode-move-link episode-move-link-prev">前のエピソードへ</a>',
+            {% else %}
+                '',
+            {% endif %}
+            {% for i in range(page_count) %}
+                {% for k in range(2) %}
+                    `<div class="image-container {{ 'right' if k == 0 else 'left' }}">
+                        <img data-src="/comic_image/{{ current_comic_title }}/episode_{{ episode_no }}/{{ file_list[i] }}" class="swiper-lazy">
+                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                    </div>`,
+                {% endfor %}
+            {% endfor %}
+            {% if episode_no < episode_count %}
+                '<a href="/comic/{{ current_comic_title }}/episode/{{ episode_no + 1 }}" class="episode-move-link episode-move-link-next">次のエピソードへ</a>',
+            {% else %}
+                '',
+            {% endif %}
+            '',
+        ];
+    </script>
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="/static/read_episode.js"></script>
+    <script src="/static/viewer_main.js"></script>
+</body>
+
+</html>

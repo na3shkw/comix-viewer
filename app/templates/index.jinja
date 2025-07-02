@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ app_name }}</title>
+    <link rel="stylesheet" href="/static/index_style.css">
+</head>
+
+<body>
+    <main>
+        <h1>{{ app_name }}</h1>
+        <ul class="comic-list">
+            {% for comic_title in comic_titles %}
+            <li class="comic-list-item"><a href="/comic/{{ comic_title }}/">{{ comic_title }}</a></li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+
+</html>

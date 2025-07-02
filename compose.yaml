@@ -1,0 +1,32 @@
+services:
+  app:
+    build: .
+    volumes:
+      - type: bind
+        source: ${COMIC_DIR}
+        target: /data/comic_image
+      - type: volume
+        source: viewer_data
+        target: /data/sqlite
+    expose:
+      - "5000"
+
+  nginx:
+    image: nginx:1.29.0-alpine-slim
+    ports:
+      - "${APP_PORT:-80}:80"
+    volumes:
+      - type: bind
+        source: ./nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+      - type: bind
+        source: ${COMIC_DIR}
+        target: /data/comic_image
+      - type: bind
+        source: ./app/static
+        target: /app/static
+    depends_on:
+      - app
+
+volumes:
+  viewer_data:
