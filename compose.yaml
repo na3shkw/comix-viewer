@@ -1,6 +1,6 @@
 services:
   app:
-    build: .
+    image: ghcr.io/na3shkw/comix-viewer:${APP_VERSION:-latest}
     volumes:
       - type: bind
         source: ${COMIC_DIR}
