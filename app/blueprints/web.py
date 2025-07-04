@@ -3,6 +3,7 @@ from flask import Blueprint, render_template
 from natsort import natsorted
 
 from app.models import ReadEpisode
+from app.utils import list_items
 
 web_bp = Blueprint(
     "web", __name__, template_folder="../templates", static_folder="../static"
@@ -14,9 +15,7 @@ COMIC_DIR = "/data/comic_image"
 
 @web_bp.route("/")
 def index():
-    comic_titles = [
-        d for d in os.listdir(COMIC_DIR) if os.path.isdir(os.path.join(COMIC_DIR, d))
-    ]
+    comic_titles = list_items(COMIC_DIR, item_type="dir")
     comic_titles.sort()
 
     return render_template(
@@ -32,13 +31,8 @@ def comic_detail(comic_title):
     if not os.path.isdir(comic_path):
         return "Comic not found", 404
 
-    episode_no_list = sorted(
-        [
-            int(s.replace("episode_", ""))
-            for s in os.listdir(comic_path)
-            if os.path.isdir(os.path.join(comic_path, s))
-        ]
-    )
+    episode_dirs = list_items(comic_path, item_type="dir")
+    episode_no_list = sorted([int(s.replace("episode_", "")) for s in episode_dirs])
     read_episodes_from_db = ReadEpisode.query.filter_by(comic_title=comic_title).all()
     read_episode_nos = [ep.episode_no for ep in read_episodes_from_db]
 
@@ -61,7 +55,9 @@ def viewer(comic_title, episode_no):
     if not os.path.isdir(episode_dir):
         return "Episode not found", 404
 
-    file_list = natsorted(os.listdir(episode_dir))
+    file_list = natsorted(list_items(episode_dir, item_type="file"))
+    episode_count = len(list_items(comic_path, item_type="dir"))
+
     return render_template(
         "episode.jinja",
         app_name=APP_NAME,
@@ -69,12 +65,6 @@ def viewer(comic_title, episode_no):
         episode_no=episode_no,
         file_list=file_list,
         page_count=len(file_list),
-        episode_count=len(
-            [
-                d
-                for d in os.listdir(comic_path)
-                if os.path.isdir(os.path.join(comic_path, d))
-            ]
-        ),
+        episode_count=episode_count,
         current_comic_title=comic_title,
     )
