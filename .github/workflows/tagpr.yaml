@@ -36,6 +36,12 @@ jobs:
 
     if: needs.tagpr.outputs.tagpr-tag != ''
 
+    permissions:
+      attestations: write
+      packages: write
+      id-token: write
+      contents: read
+
     uses: ./.github/workflows/deploy-image.yaml
 
     with:
