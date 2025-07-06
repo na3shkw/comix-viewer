@@ -1,6 +1,6 @@
 [project]
 name = "comix-viewer"
-version = "0.1.0"
+version = "0.1.1"
 description = "Comix Viewer is a web application for viewing comic books, with features for marking episodes as read or unread."
 readme = "README.md"
 requires-python = ">=3.13.5"
