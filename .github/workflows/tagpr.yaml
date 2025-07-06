@@ -1,0 +1,44 @@
+name: tagpr
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tagpr:
+    runs-on: ubuntu-24.04
+
+    outputs:
+      tagpr-tag: ${{ steps.run-tagpr.outputs.tag }}
+
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Run tagpr
+        id: run-tagpr
+        uses: Songmu/tagpr@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  push-docker-image:
+    needs: tagpr
+
+    if: needs.tagpr.outputs.tagpr-tag != ''
+
+    timeout-minutes: 5
+
+    uses: ./.github/workflows/deploy-image.yaml
+
+    with:
+      tag: ${{ needs.tagpr.outputs.tagpr-tag }}

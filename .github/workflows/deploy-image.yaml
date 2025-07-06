@@ -7,9 +7,12 @@ on:
         description: 'The git tag to build an image for (e.g., v1.0.0)'
         required: true
         type: string
-  push:
-    tags:
-      - 'v*'
+  workflow_call:
+    inputs:
+      tag:
+        description: 'The git tag to build an image for (e.g., v1.0.0)'
+        required: true
+        type: string
 
 env:
   REGISTRY: ${{ vars.REGISTRY || 'ghcr.io' }}

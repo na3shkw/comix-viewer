@@ -1,0 +1,22 @@
+name: Release
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+
+    timeout-minutes: 5
+
+    steps:
+      - name: Create release
+        uses: actions/github-script@v7
+        with:
+          script-file: .github/scripts/create-release.js
+        env:
+          TAG_NAME: ${{ github.event.inputs.tag }}
