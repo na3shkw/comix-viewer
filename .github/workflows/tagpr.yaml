@@ -36,8 +36,6 @@ jobs:
 
     if: needs.tagpr.outputs.tagpr-tag != ''
 
-    timeout-minutes: 5
-
     uses: ./.github/workflows/deploy-image.yaml
 
     with:
