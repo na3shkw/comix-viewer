@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.1.2](https://github.com/na3shkw/comix-viewer/compare/v0.1.1...v0.1.2) - 2025-07-08
+### Fix bug 🐛
+- fix: DATABASE_URLの設定を修正しデータが永続化されるようにする by @na3shkw in https://github.com/na3shkw/comix-viewer/pull/2
+### Other Changes
+- ライセンスを作成 by @na3shkw in https://github.com/na3shkw/comix-viewer/pull/3
+- chore: CHANGELOG.mdを作成し、バージョン0.1.1までの変更内容を追加 by @na3shkw in https://github.com/na3shkw/comix-viewer/pull/4
+
 ## [v0.1.1](https://github.com/na3shkw/comix-viewer/compare/v0.1.0...v0.1.1) - 2025-07-04
 
 ### Fix bug 🐛
