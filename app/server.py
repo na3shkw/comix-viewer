@@ -15,16 +15,10 @@ def create_app():
         APP_NAME=os.getenv("APP_NAME", "Comix Viewer"),
         COMIC_DIR="/data/comic_image",
         SQLALCHEMY_DATABASE_URI=os.getenv(
-            "DATABASE_URL", "sqlite:///" + os.path.join(app.instance_path, "viewer_data.db")
+            "DATABASE_URL", "sqlite:////data/sqlite/viewer_data.db"
         ),
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
     )
-
-    # instanceフォルダの作成
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
 
     # 拡張機能の初期化
     db.init_app(app)
