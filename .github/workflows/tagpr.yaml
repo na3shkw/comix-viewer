@@ -46,3 +46,13 @@ jobs:
 
     with:
       tag: ${{ needs.tagpr.outputs.tagpr-tag }}
+
+  release:
+    needs: tagpr
+
+    if: needs.tagpr.outputs.tagpr-tag != ''
+
+    uses: ./.github/workflows/release.yaml
+
+    with:
+      tag: ${{ needs.tagpr.outputs.tagpr-tag }}
