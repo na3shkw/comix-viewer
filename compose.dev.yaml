@@ -6,7 +6,28 @@ services:
       - FLASK_APP=app.server
       - FLASK_DEBUG=1
     command: flask run --host=0.0.0.0
-    volumes:
+    volumes: !override
+      - type: bind
+        source: ${COMIC_DIR}
+        target: /data/comic_image
+      - type: volume
+        source: viewer_data
+        target: /data/sqlite
       - type: bind
         source: ./app
         target: /app/app
+
+  nginx:
+    volumes: !override
+      - type: bind
+        source: ./nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+      - type: bind
+        source: ${COMIC_DIR}
+        target: /data/comic_image
+      - type: bind
+        source: ./app/static
+        target: /app/static
+
+volumes: !override
+  viewer_data:
