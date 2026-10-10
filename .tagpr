@@ -47,6 +47,7 @@
 #
 [tagpr]
     releaseBranch = main
-    versionFile = pyproject.toml,uv.lock
+    versionFile = pyproject.toml
+    postVersionCommand = uv lock
     vPrefix = true
     release = draft
