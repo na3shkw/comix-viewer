@@ -10,7 +10,7 @@ services:
         target: /data/sqlite
       - type: volume
         source: static_content
-        target: /app/static
+        target: /srv/static
     expose:
       - "5000"
 
@@ -28,10 +28,10 @@ services:
       - type: volume
         source: static_content
         target: /app/static
+        read_only: true
     depends_on:
       - app
 
 volumes:
   viewer_data:
   static_content:
-    name: comix-viewer_static_${APP_VERSION:-latest}

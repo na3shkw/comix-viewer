@@ -13,8 +13,11 @@ WORKDIR /app
 COPY --from=builder /app/.venv ./.venv
 COPY app ./app
 COPY wsgi.py .
+COPY docker-entrypoint.sh /usr/local/bin/
 
 ENV PATH="/app/.venv/bin:$PATH" \
-    PYTHONPATH=/app
+    PYTHONPATH=/app \
+    STATIC_EXPORT_DIR=/srv/static
 
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "wsgi:app"]
