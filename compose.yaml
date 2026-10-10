@@ -12,7 +12,7 @@ services:
       - "5000"
 
   nginx:
-    image: nginx:1.29.0-alpine-slim
+    image: nginx:1.31.6-alpine-slim
     ports:
       - "${APP_PORT:-80}:80"
     volumes:
