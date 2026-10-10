@@ -8,51 +8,50 @@ on:
 jobs:
   tagpr:
     runs-on: ubuntu-24.04
-
     outputs:
       tagpr-tag: ${{ steps.run-tagpr.outputs.tag }}
-
     permissions:
       contents: write
       pull-requests: write
       issues: write
-    
     timeout-minutes: 5
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: true
 
       - name: Run tagpr
         id: run-tagpr
-        uses: Songmu/tagpr@v1
+        uses: Songmu/tagpr@0c4eb5a3b0862693702acea436a7c68bd586530d # v1.21.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   push-docker-image:
     needs: tagpr
-
     if: needs.tagpr.outputs.tagpr-tag != ''
-
     permissions:
       attestations: write
       packages: write
       id-token: write
       contents: read
-
     uses: ./.github/workflows/deploy-image.yaml
-
     with:
       tag: ${{ needs.tagpr.outputs.tagpr-tag }}
 
-  release:
-    needs: tagpr
-
+  publish-release:
+    needs: [tagpr, push-docker-image]
     if: needs.tagpr.outputs.tagpr-tag != ''
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-    uses: ./.github/workflows/release.yaml
-
-    with:
-      tag: ${{ needs.tagpr.outputs.tagpr-tag }}
+      - name: Publish release
+        run: gh release edit "$TAG_NAME" --draft=false --latest
+        env:
+          TAG_NAME: ${{ needs.tagpr.outputs.tagpr-tag }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
