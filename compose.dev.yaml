@@ -10,3 +10,9 @@ services:
       - type: bind
         source: ./app
         target: /app/app
+
+  nginx:
+    volumes:
+      - type: bind
+        source: ./app/static
+        target: /app/static
