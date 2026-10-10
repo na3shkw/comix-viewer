@@ -2,9 +2,9 @@ FROM python:3.13.5-bookworm AS builder
 
 WORKDIR /app
 
+COPY --from=ghcr.io/astral-sh/uv:0.12.23 /uv /bin/uv
 COPY pyproject.toml uv.lock ./ 
-RUN pip install --no-cache-dir uv \
-    && uv sync --no-cache --no-dev
+RUN uv sync --locked --no-cache --no-dev
 
 FROM python:3.13.5-slim-bookworm
 

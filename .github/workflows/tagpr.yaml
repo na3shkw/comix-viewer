@@ -21,6 +21,9 @@ jobs:
         with:
           persist-credentials: true
 
+      - name: Set up uv
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+
       - name: Run tagpr
         id: run-tagpr
         uses: Songmu/tagpr@0c4eb5a3b0862693702acea436a7c68bd586530d # v1.21.2
