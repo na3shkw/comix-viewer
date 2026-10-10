@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.13.5"
 
 [[package]]
@@ -46,7 +46,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "flask", extras = ["dotenv"], specifier = ">=3.1.1" },
+    { name = "flask", extras = ["dotenv"], specifier = ">=3.1.3" },
     { name = "flask-sqlalchemy", specifier = ">=3.1.1" },
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "natsort", specifier = ">=8.4.0" },
