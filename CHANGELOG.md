@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.2.1](https://github.com/na3shkw/comix-viewer/compare/v0.2.0...v0.2.1) - 2026-10-10
+
+### Other Changes
+- chore(deps): bump flask from 3.1.1 to 3.1.3 by @dependabot[bot] in https://github.com/na3shkw/comix-viewer/pull/10
+- chore(deps): bump werkzeug from 3.1.3 to 3.1.9 by @dependabot[bot] in https://github.com/na3shkw/comix-viewer/pull/11
+- chore(deps): bump python-dotenv from 1.1.1 to 1.2.2 by @dependabot[bot] in https://github.com/na3shkw/comix-viewer/pull/12
+
 ## [v0.2.0](https://github.com/na3shkw/comix-viewer/compare/v0.1.2...v0.2.0) - 2026-10-10
 
 ### New Features 🎉
