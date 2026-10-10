@@ -15,16 +15,6 @@
 - fix: workflow_call時にタグ入力が空になりイメージのpushに失敗する問題を修正 by @na3shkw in https://github.com/na3shkw/comix-viewer/pull/14
 - fix: uv sync を --locked で実行し、uv のバージョンを固定 by @na3shkw in https://github.com/na3shkw/comix-viewer/pull/15
 
-## [v0.2.0](https://github.com/na3shkw/comix-viewer/compare/v0.1.2...v0.2.0) - 2026-10-10
-
-### New Features 🎉
-- 静的コンテンツがホスト環境に存在しなくてもnginxでサーブできるように改善 by @na3shkw in https://github.com/na3shkw/comix-viewer/pull/7
-### Fix bug 🐛
-- リリースワークフローを修正 by @na3shkw in https://github.com/na3shkw/comix-viewer/pull/5
-### Other Changes
-- chore: nginxを1.31.6に更新 by @na3shkw in https://github.com/na3shkw/comix-viewer/pull/8
-- chore: GitHub Actionsのバージョンを更新し、リリースフローを整理 by @na3shkw in https://github.com/na3shkw/comix-viewer/pull/9
-
 ## [v0.1.2](https://github.com/na3shkw/comix-viewer/compare/v0.1.1...v0.1.2) - 2025-07-08
 ### Fix bug 🐛
 - fix: DATABASE_URLの設定を修正しデータが永続化されるようにする by @na3shkw in https://github.com/na3shkw/comix-viewer/pull/2
