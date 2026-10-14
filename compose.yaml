@@ -13,6 +13,7 @@ services:
         target: /srv/static
     expose:
       - "5000"
+    restart: unless-stopped
 
   nginx:
     image: nginx:1.31.6-alpine-slim
@@ -31,6 +32,7 @@ services:
         read_only: true
     depends_on:
       - app
+    restart: unless-stopped
 
 volumes:
   viewer_data:
