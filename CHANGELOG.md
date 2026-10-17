@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.2.1](https://github.com/na3shkw/comix-viewer/compare/v0.2.0...v0.2.1) - 2026-10-17
+
+### Other Changes
+- fix: app より先に nginx が起動しても失敗しないようにする by @na3shkw in https://github.com/na3shkw/comix-viewer/pull/17
+
 ## [v0.2.0](https://github.com/na3shkw/comix-viewer/compare/v0.1.2...v0.2.0) - 2026-10-10
 
 ### New Features 🎉
